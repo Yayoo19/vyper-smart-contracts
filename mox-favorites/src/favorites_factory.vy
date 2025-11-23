@@ -21,9 +21,10 @@ def store_from_factory(favorite_index: uint256, new_number: uint256):
     favorites_contract: i_favorites = i_favorites(favorites_address)
     extcall favorites_contract.store(new_number)
 
-
-    
-
-    
-
+@external
+@view
+def view_from_factory(favorite_index: uint256) -> uint256:
+    favorites_contract: i_favorites = i_favorites(self.list_of_favorites_contracts[favorite_index])
+    value: uint256 = staticcall favorites_contract.retrieve()
+    return value
     
