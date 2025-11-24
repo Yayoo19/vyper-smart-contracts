@@ -1,4 +1,4 @@
-from src import favorites, favorites_factory
+from src import favorites, favorites_factory, five_more
 from moccasin.boa_tools import VyperContract
 from moccasin.config import get_active_network
 
@@ -22,7 +22,12 @@ def deploy_factory(favorites_contract: VyperContract):
     print(new_favorites_contract.retrieve())
     print(favorites_contract.retrieve())
 
+def deploy_five_more():
+    five_more_contract: VyperContract = five_more.deploy()
+    five_more_contract.store(55)
+    print("value from five_more_contract: ", five_more_contract.retrieve())
 
 def moccasin_main():
     favorites_contract = deploy_fav()
     deploy_factory(favorites_contract)
+    deploy_five_more()    
