@@ -4,6 +4,7 @@
 
 #TODO: Get funds from users, Withdraw funds, Set a minimum funding value in USD
 from interfaces import AggregatorV3Interface
+import get_price_module
 
 #Constants & Immutables
 PRICE_FEED: public(immutable(AggregatorV3Interface))    #Address ETH/USD (testnet): 0x694AA1769357215DE4FAC081bf1f309aDC325306
@@ -31,7 +32,7 @@ def _fund():
     Allow user to send $ to this contract.
     Have a minimun amount.
     """
-    usd_value_eth: uint256 = self._get_eth_to_usd_rate(msg.value)
+    usd_value_eth: uint256 = get_price_module._get_eth_to_usd_rate(PRICE_FEED, msg.value)
     assert usd_value_eth >= MINIMUM_USD, "Minimum: 5 usd"
     self.funders.append(msg.sender)
     self.funder_and_amount[msg.sender] += msg.value
@@ -48,16 +49,11 @@ def withdraw():
         self.funder_and_amount[funder] = 0
     self.funders = []
     
-@internal
-def _get_eth_to_usd_rate(eth_amount: uint256) -> uint256:
-    """
-    Convert ETH to USD 
-    """
-    # ABI from interface above 
-    price: int256 = staticcall PRICE_FEED.latestAnswer() # 8 decimal places,  staticcall to use external function without modifing anything in external contract
-    eth_price: uint256 = convert(price, uint256) * (10 ** 10)
-    eth_amount_usd: uint256 = eth_amount * eth_price // (1 * (10 **18)) # 1 x 10^18
-    return eth_amount_usd
+@external
+def get_eth_to_usd_rate(eth_amount: uint256) -> uint256:
+    return get_price_module._get_eth_to_usd_rate(PRICE_FEED, eth_amount)
+    
+
 
 @external
 @payable
