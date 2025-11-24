@@ -3,15 +3,7 @@
 # @Author: Yayoo19
 
 #TODO: Get funds from users, Withdraw funds, Set a minimum funding value in USD
-
-
-
-#interface to call contract price feed from chainlink.
-interface AggregatorV3Interface:
-    def decimals() -> int8: view
-    def description() -> String[10000]: view
-    def version() -> int256: view
-    def latestAnswer() -> int256: view
+from interfaces import AggregatorV3Interface
 
 #Constants & Immutables
 PRICE_FEED: public(immutable(AggregatorV3Interface))    #Address ETH/USD (testnet): 0x694AA1769357215DE4FAC081bf1f309aDC325306
