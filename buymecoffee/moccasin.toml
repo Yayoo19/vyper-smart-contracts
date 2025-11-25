@@ -3,6 +3,9 @@ src = "src"
 out = "out"
 dot_env = ".env"
 
+[networks.contracts.price_feed]
+deployer_script = "script/deploy_mocks.py"
+
 [networks.pyevm]
 is_zksync = false
 
@@ -15,6 +18,11 @@ chain_id = 31337
 [networks.sepolia]
 url = "https://ethereum-sepolia-rpc.publicnode.com"
 chain_id = 11155111
+
+[networks.sepolia.contracts.price_feed]
+address = "0x694AA1769357215DE4FAC081bf1f309aDC325306"
+deployer_script = "script/deploy_mocks.py"
+
 
 [networks.zksync-sepolia]
 url = "https://sepolia.era.zksync.dev"
