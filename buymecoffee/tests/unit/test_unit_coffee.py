@@ -30,3 +30,6 @@ def test_withdraw_not_owner(coffee_funded, account):
 def test_withdraw(coffee_funded):
     coffee_funded.withdraw()
     assert boa.env.get_balance(coffee_funded.address) == 0
+
+def test_get_eth_to_usd_rate(coffee_funded):
+    assert coffee_funded.get_eth_to_usd_rate(FUND_VALUE) > 0
