@@ -11,6 +11,6 @@ def test_token_supply(erc20_contract):
 def test_token_emits_event(erc20_contract):
     with boa.env.prank(erc20_contract.owner()):
         erc20_contract.transfer(RANDOM_USER, INITIAL_SUPPLY)
-        logs = erc20_contract.get_logs()
+        erc20_contract.get_logs()
         # breakpoint()
     assert erc20_contract.balanceOf(RANDOM_USER) == INITIAL_SUPPLY
