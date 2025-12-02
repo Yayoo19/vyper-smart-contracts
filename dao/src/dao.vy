@@ -36,6 +36,10 @@ event Deposit:
     sender: address
     amount: uint256
 
+event RoleChanged:
+    admin: address
+    role: address
+
 
 # ------------------------------------------------------------------
 #                              ROLES
@@ -109,19 +113,21 @@ def _when_not_paused():
 def setReviewer(user: address, status: bool):
     self._only_admin()
     self.reviewer[user] = status
+    log RoleChanged(admin=msg.sender, role=user)
 
 
 @external
 def setExecutor(user: address, status: bool):
     self._only_admin()
     self.executor[user] = status
+    log RoleChanged(admin=msg.sender, role=user)
 
 
 @external
 def setGuardian(new_guardian: address):
     self._only_admin()
     self.guardian = new_guardian
-
+    log RoleChanged(admin=msg.sender, role=new_guardian)
 
 # ------------------------------------------------------------------
 #                              EXTERNAL FUNCTIONS
