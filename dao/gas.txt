@@ -1,0 +1,69 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-9.0.1, pluggy-1.6.0
+rootdir: /vyper/vyper-smart-contracts/dao
+configfile: pyproject.toml
+plugins: hypothesis-6.148.2, titanoboa-0.2.8, cov-7.0.0, xdist-3.8.0
+collected 1 item
+
+tests/test_stateful_dao.py .                                             [100%]                                                                                                                                           
+                                                                                                                                           
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━━┳━━━━━━━┳━━━━━━━┳━━━━━━━━┓
+┃ Contract                                             ┃ Computation                    ┃ Count ┃ Mean  ┃ Median ┃ Stdev ┃ Min   ┃ Max    ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━━╇━━━━━━━╇━━━━━━━╇━━━━━━━━┩
+│ Path: src                                            │                                │       │       │        │       │       │        │
+│ Name: dao.vy                                         │                                │       │       │        │       │       │        │
+│ Address: 0x3d06E92f20305D9a2D71a1D479E9EE22690Ae7E4  │                                │       │       │        │       │       │        │
+│                                                      │ submit_proposal                │ 29826 │ 97956 │ 95452  │ 12043 │ 75552 │ 361101 │
+│                                                      │ setReviewer                    │ 13393 │ 23663 │ 23663  │ 0     │ 23663 │ 23663  │
+│                                                      │ approve_proposal               │ 13393 │ 21940 │ 21940  │ 0     │ 21940 │ 21940  │
+│                                                      │ deposit                        │ 18545 │ 1312  │ 1312   │ 0     │ 1312  │ 1312   │
+│                                                      │ <none>                         │ 89478 │ 3     │ 3      │ 0     │ 3     │ 3      │
+└──────────────────────────────────────────────────────┴────────────────────────────────┴───────┴───────┴────────┴───────┴───────┴────────┘
+                                                                                                                                                        
+                                                                                                                                                        
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━┳━┳━┳━━┳━┳━━┓
+┃ Contract                                             ┃ Computation                                                                     ┃ ┃ ┃ ┃  ┃ ┃  ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━╇━╇━╇━━╇━╇━━┩
+│ Path: src                                            │                                                                                 │ │ │ │  │ │  │
+│ Name: dao.vy                                         │                                                                                 │ │ │ │  │ │  │
+│ Address: 0x3d06E92f20305D9a2D71a1D479E9EE22690Ae7E4  │                                                                                 │ │ │ │  │ │  │
+│ ---------------------------------------------------- │ --------------------------------------------------------------------------      │ │ │ │  │ │  │
+│ src/dao.vy:deposit                                   │ 203: log Deposit(sender=msg.sender, amount=msg.value)                           │ │ │ │  │ │  │
+│ src/dao.vy:deposit                                   │ 202: assert msg.value > 0, "No value sent"                                      │ │ │ │  │ │  │
+│ src/dao.vy:deposit                                   │ 201: def deposit():                                                             │ │ │ │  │ │  │
+│ ---------------------------------------------------- │ --------------------------------------------------------------------------      │ │ │ │  │ │  │
+│ src/dao.vy:submit_proposal                           │ 142: description=description,                                                   │ │ │ │  │ │  │
+│ src/dao.vy:submit_proposal                           │ 147: id=self.proposals_count, requester=msg.sender, amount=amount               │ │ │ │  │ │  │
+│ src/dao.vy:submit_proposal                           │ 140: requester=msg.sender,                                                      │ │ │ │  │ │  │
+│ src/dao.vy:submit_proposal                           │ 143: approved=False,                                                            │ │ │ │  │ │  │
+│ src/dao.vy:submit_proposal                           │ 144: executed=False,                                                            │ │ │ │  │ │  │
+│ src/dao.vy:submit_proposal                           │ 146: log ProposalSubmitted(                                                     │ │ │ │  │ │  │
+│ src/dao.vy:submit_proposal                           │ 138: self.proposals_count += 1                                                  │ │ │ │  │ │  │
+│ src/dao.vy:submit_proposal                           │ 139: self.proposals = Proposal(                                                 │ │ │ │  │ │  │
+│ src/dao.vy:submit_proposal                           │ 136: def submit_proposal(amount: uint256, description: String[1000]):           │ │ │ │  │ │  │
+│ src/dao.vy:submit_proposal                           │ 137: self._when_not_paused()                                                    │ │ │ │  │ │  │
+│ ---------------------------------------------------- │ --------------------------------------------------------------------------      │ │ │ │  │ │  │
+│ src/dao.vy:_when_not_paused                          │ 105: assert not self.paused, "Contract is Paused"                               │ │ │ │  │ │  │
+│ ---------------------------------------------------- │ --------------------------------------------------------------------------      │ │ │ │  │ │  │
+│ src/dao.vy:                                          │  65: proposals_count: public(uint256)                                           │ │ │ │  │ │  │
+│ src/dao.vy:                                          │  64: proposals: public(HashMap)                                                 │ │ │ │  │ │  │
+│ ---------------------------------------------------- │ --------------------------------------------------------------------------      │ │ │ │  │ │  │
+│ src/dao.vy:setReviewer                               │ 115: self.reviewer = status                                                     │ │ │ │  │ │  │
+│ src/dao.vy:setReviewer                               │ 116: log RoleChanged(admin=msg.sender, role=user)                               │ │ │ │  │ │  │
+│ src/dao.vy:setReviewer                               │ 113: def setReviewer(user: address, status: bool):                              │ │ │ │  │ │  │
+│ src/dao.vy:setReviewer                               │ 114: self._only_admin()                                                         │ │ │ │  │ │  │
+│ ---------------------------------------------------- │ --------------------------------------------------------------------------      │ │ │ │  │ │  │
+│ src/dao.vy:_only_admin                               │  85: assert msg.sender == self.admin                                            │ │ │ │  │ │  │
+│ ---------------------------------------------------- │ --------------------------------------------------------------------------      │ │ │ │  │ │  │
+│ src/dao.vy:approve_proposal                          │ 156: self.proposals.approved = True                                             │ │ │ │  │ │  │
+│ src/dao.vy:approve_proposal                          │ 157: log ProposalApproved(id=proposal_id, reviewer=msg.sender)                  │ │ │ │  │ │  │
+│ src/dao.vy:approve_proposal                          │ 155: assert not self.proposals.approved                                         │ │ │ │  │ │  │
+│ src/dao.vy:approve_proposal                          │ 153: self._only_reviewer()                                                      │ │ │ │  │ │  │
+│ src/dao.vy:approve_proposal                          │ 154: self._when_not_paused()                                                    │ │ │ │  │ │  │
+│ src/dao.vy:approve_proposal                          │ 152: def approve_proposal(proposal_id: uint256):                                │ │ │ │  │ │  │
+│ ---------------------------------------------------- │ --------------------------------------------------------------------------      │ │ │ │  │ │  │
+│ src/dao.vy:_only_reviewer                            │  95: assert self.reviewer                                                       │ │ │ │  │ │  │
+└──────────────────────────────────────────────────────┴─────────────────────────────────────────────────────────────────────────────────┴─┴─┴─┴──┴─┴──┘
+
+
+======================== 1 passed in 157.19s (0:02:37) =========================
