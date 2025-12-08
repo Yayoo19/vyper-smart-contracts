@@ -1,5 +1,4 @@
 import boa
-from boa.contracts.abi.abi_contract import ABIContract
 from moccasin.config import get_active_network
 from script.setup_script import setup_script
 
@@ -48,4 +47,3 @@ def run_deposit_script(usdc, weth):
 def moccasin_main():
     usdc, weth, _, _ = setup_script()
     run_deposit_script(usdc, weth)
-# moccasin_main()
